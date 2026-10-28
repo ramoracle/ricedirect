@@ -106,16 +106,6 @@
             border-radius: 8px;
             cursor: pointer;
             border: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
-
-        .radio-label input {
-            margin: 0;
-        }
-
-        .radio-label:has(input:checked) {
-            background: var(--accent);
-            border-color: var(--primary);
         }
 
         select, input[type="text"] {
@@ -146,12 +136,6 @@
             font-size: 1.05rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s ease;
-            box-shadow: 0 4px 8px rgba(45, 106, 79, 0.2);
-        }
-
-        .cta-button:hover {
-            background-color: #1b4332;
         }
     </style>
 </head>
@@ -159,13 +143,13 @@
     <div class="app-container">
         <header class="main-header">
             <h1>🌾 RiceDirect</h1>
-            <p class="tagline">Premium Godavari Sona Masoori — Fresh Farm Wholesale</p>
+            <p class="tagline">Premium Rayalaseema Sona Masoori — Fresh Farm Wholesale</p>
         </header>
 
         <main class="product-card">
             <div class="badge">Direct Farmer Sourced</div>
-            <h2>Premium Rice Bags (25kg)</h2>
-            <p class="desc">High-quality, long-grained aromatic Sona Masoori rice. Sourced at wholesale rates compared to the market, delivered clean and fresh.</p>
+            <h2>Premium Rayalaseema Rice Bags (25kg)</h2>
+            <p class="desc">High-quality, long-grained authentic Rayalaseema Sona Masoori rice. Sourced at wholesale rates compared to the market, delivered clean and fresh.</p>
 
             <form id="orderForm" onsubmit="sendWhatsAppOrder(event)">
                 <div class="form-group">
@@ -213,29 +197,26 @@
         function sendWhatsAppOrder(event) {
             event.preventDefault();
             
-            // Patched Numbers & Corporate Firewall Routing Rules
-            const MY_WHATSAPP_NUMBER = "919160871927"; 
-            
-            const name = document.getElementById('name').value;
-            const polish = document.querySelector('input[name="polish"]:checked').value;
-            const quantity = document.getElementById('quantity').value;
-            const location = document.getElementById('location').value;
+            var name = document.getElementById('name').value;
+            var polish = document.querySelector('input[name="polish"]:checked').value;
+            var quantity = document.getElementById('quantity').value;
+            var location = document.getElementById('location').value;
 
-            // Formatted Clear Message Matrix
-            const message = `🌾 *NEW RICE DIRECT ORDER* 🌾\n\n` +
-                            `👤 *Name:* ${name}\n` +
-                            `📦 *Product:* Godavari Sona Masoori (25kg Bag)\n` +
-                            `🍚 *Type:* ${polish}\n` +
-                            `🔢 *Quantity:* ${quantity} Bag(s)\n` +
-                            `📍 *Office Desk/Location:* ${location}\n\n` +
-                            `👉 _Please reply to confirm order processing and total price breakdown._`;
+            // Simple text building block tailored to Rayalaseema Branding
+            var txt = "🌾 NEW RICE DIRECT ORDER 🌾\n\n" +
+                      "Name: " + name + "\n" +
+                      "Product: Rayalaseema Sona Masoori (25kg Bag)\n" +
+                      "Type: " + polish + "\n" +
+                      "Quantity: " + quantity + " Bag(s)\n" +
+                      "Office Desk: " + location + "\n\n" +
+                      "Please confirm order processing.";
 
-            const encodedMessage = encodeURIComponent(message);
+            var encodedText = encodeURIComponent(txt);
             
-            // Secure API bridge routing path to prevent proxy blocks
-            const whatsappUrl = `https://whatsapp.com{MY_WHATSAPP_NUMBER}&text=${encodedMessage}`;
+            // Clean API bridge layout bypassing corporate workspace proxies
+            var url = "https://whatsapp.com" + encodedText;
             
-            window.open(whatsappUrl, '_blank');
+            window.open(url, '_blank');
         }
     </script>
 </body>
