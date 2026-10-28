@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>రైతు ధాన్యం | Raithu Dhanyam</title>
+  <title>GRAINORA | రైతు ధాన్యం</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app-container">
     <header>
-      <h1><span lang="te">🌾 రైతు ధాన్యం</span></h1>
-      <p>From Our Farmers to Your Family</p>
-      <p>Rayalaseema Sona Masoori Rice</p>
+      <h1>🌾 GRAINORA</h1>
+      <p class="telugu-brand" lang="te">రైతు ధాన్యం</p>
+      <p class="brand-tagline"><em>Rooted in India. Shared with the World.</em></p>
+      <p>Sona Masoori Rice</p>
     </header>
     <figure class="farm-hero">
       <img src="farm-hero.png" alt="Illustration of a farmer tending paddy fields with rocky hills and a warm sunrise" fetchpriority="high">
@@ -21,14 +22,14 @@
     <main class="product-card">
       <span class="badge">Direct Farmer Sourced</span>
       <h2>Premium Rice Bags (25 kg)</h2>
-      <h3 class="brand-promise">Rooted in Rayalaseema. Delivered with care.</h3>
+      <h3 class="brand-promise">Rooted in India. Shared with the World.</h3>
       <p class="description">Sona Masoori rice sourced directly from farmers, with clear pricing and personal service from RAM.</p>
       <p class="description">Choose your rice preference and quantity. Send your order enquiry through WhatsApp to receive a price and delivery quote before confirming your order.</p>
       <section class="contact-card" aria-labelledby="contactHeading">
         <h3 id="contactHeading">Contact RAM</h3>
         <p>Phone / WhatsApp: <a href="tel:+919160871927">+91 91608 71927</a></p>
         <p>Delivery enquiries across India and outside India. Availability, shipping charges, estimated timelines and any destination restrictions will be confirmed before accepting your order.</p>
-        <a class="enquiry-link" href="https://wa.me/919160871927?text=Hello%20RAM%2C%20I%20would%20like%20to%20enquire%20about%20Raithu%20Dhanyam%20rice%20prices%20and%20delivery." target="_blank" rel="noopener noreferrer">Ask RAM on WhatsApp ↗</a>
+        <a class="enquiry-link" href="https://wa.me/919160871927?text=Hello%20RAM%2C%20I%20would%20like%20to%20enquire%20about%20GRAINORA%20rice%20prices%20and%20delivery." target="_blank" rel="noopener noreferrer">Ask RAM on WhatsApp ↗</a>
       </section>
       <form id="orderForm">
         <fieldset>
@@ -81,11 +82,12 @@
       const quantity = document.getElementById('quantity').value;
       const destination = document.getElementById('destination').value;
       const message = [
-        '🌾 *రైతు ధాన్యం — NEW ORDER* 🌾',
-        'From Our Farmers to Your Family', '',
+        '🌾 *GRAINORA — NEW ORDER* 🌾',
+        'రైతు ధాన్యం',
+        'Rooted in India. Shared with the World.', '',
         `👤 *Name:* ${nameField.value.trim()}`,
         `📱 *Customer WhatsApp:* ${whatsappNumber}`,
-        '📦 *Product:* Rayalaseema Sona Masoori (25 kg Bag)',
+        '📦 *Product:* GRAINORA Sona Masoori (25 kg Bag)',
         `🍚 *Type:* ${polish}`,
         `🔢 *Quantity:* ${quantity} Bag(s)`,
         `🌍 *Destination:* ${destination}`,
