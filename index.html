@@ -5,204 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RiceDirect | Office Group Orders</title>
     <style>
-        :root {
-            --primary: #2d6a4f;
-            --background: #f4f7f5;
-            --card-bg: #ffffff;
-            --text: #1b4332;
-            --border: #d8e2dc;
-            --accent: #d8f3dc;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background);
-            color: var(--text);
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 480px;
-            margin-top: 10px;
-        }
-
-        .main-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .main-header h1 {
-            color: var(--primary);
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .tagline {
-            font-size: 0.9rem;
-            color: #52b788;
-            margin: 5px 0 0 0;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
-        }
-
-        .badge {
-            background-color: var(--accent);
-            color: var(--primary);
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 6px 12px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        h2 {
-            margin: 0 0 10px 0;
-            font-size: 1.4rem;
-        }
-
-        .desc {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #40916c;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--background);
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 1px solid var(--border);
-        }
-
-        select, input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            box-sizing: border-box;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            background: var(--background);
-            color: var(--text);
-        }
-
-        .divider {
-            border: 0;
-            height: 1px;
-            background: var(--border);
-            margin: 25px 0;
-        }
-
-        .cta-button {
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        body { font-family: sans-serif; background-color: #f4f7f5; color: #1b4332; padding: 20px; display: flex; justify-content: center; }
+        .card { background: white; border-radius: 12px; padding: 20px; max-width: 400px; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #d8e2dc; }
+        h1 { color: #2d6a4f; margin: 0 0 5px 0; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+        input[type="text"], select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #d8e2dc; border-radius: 6px; font-size: 1rem; }
+        button { width: 100%; background-color: #2d6a4f; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="main-header">
-            <h1>🌾 RiceDirect</h1>
-            <p class="tagline">Premium Rayalaseema Sona Masoori — Fresh Farm Wholesale</p>
-        </header>
+    <div class="card">
+        <h1>🌾 RiceDirect</h1>
+        <p>Premium Rayalaseema Sona Masoori Rice (25kg Bag) direct from farmers at wholesale rates.</p>
+        <hr style="border:0; border-top:1px solid #d8e2dc; margin: 20px 0;">
+        
+        <form onsubmit="event.preventDefault(); sendOrder();">
+            <div class="form-group">
+                <label>Select Rice Type:</label>
+                <select id="polish">
+                    <option value="Polished (Fine Grain)">✨ Polished Rice</option>
+                    <option value="Unpolished (Raw/High Fiber)">🌾 Unpolished Raw Rice</option>
+                </select>
+            </div>
 
-        <main class="product-card">
-            <div class="badge">Direct Farmer Sourced</div>
-            <h2>Premium Rayalaseema Rice Bags (25kg)</h2>
-            <p class="desc">High-quality, long-grained authentic Rayalaseema Sona Masoori rice. Sourced at wholesale rates compared to the market, delivered clean and fresh.</p>
+            <div class="form-group">
+                <label>Quantity (Bags):</label>
+                <select id="quantity">
+                    <option value="1">1 Bag (25 kg)</option>
+                    <option value="2">2 Bags (50 kg)</option>
+                    <option value="3">3 Bags (75 kg)</option>
+                    <option value="4">4 Bags (100 kg)</option>
+                </select>
+            </div>
 
-            <form id="orderForm" onsubmit="sendWhatsAppOrder(event)">
-                <div class="form-group">
-                    <label>Select Rice Polish Preference:</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="polish" value="Polished (Fine Grain)" checked>
-                            <span>✨ Polished Rice</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="polish" value="Unpolished (Raw/High Fiber)">
-                            <span>🌾 Unpolished Raw Rice</span>
-                        </label>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>Your Full Name:</label>
+                <input type="text" id="name" placeholder="Enter name" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="quantity">Quantity (Bags):</label>
-                    <select id="quantity" required>
-                        <option value="1">1 Bag (25 kg)</option>
-                        <option value="2">2 Bags (50 kg)</option>
-                        <option value="3">3 Bags (75 kg)</option>
-                        <option value="4">4 Bags (100 kg)</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>Office Delivery Location / Desk:</label>
+                <input type="text" id="location" placeholder="e.g., Floor 4, Desk 412" required>
+            </div>
 
-                <hr class="divider">
-
-                <div class="form-group">
-                    <label for="name">Your Full Name:</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Office Location / Desk Delivery Details:</label>
-                    <input type="text" id="location" placeholder="e.g., 4th Floor, Bay-B, Desk 412" required>
-                </div>
-
-                <button type="submit" class="cta-button">🚀 Place Order via WhatsApp</button>
-            </form>
-        </main>
+            <button type="submit">🚀 Place Order via WhatsApp</button>
+        </form>
     </div>
 
     <script>
-        function sendWhatsAppOrder(event) {
-            event.preventDefault();
-            
+        function sendOrder() {
             var name = document.getElementById('name').value;
-            var polish = document.querySelector('input[name="polish"]:checked').value;
+            var polish = document.getElementById('polish').value;
             var quantity = document.getElementById('quantity').value;
             var location = document.getElementById('location').value;
 
-            // Simple text building block tailored to Rayalaseema Branding
             var txt = "🌾 NEW RICE DIRECT ORDER 🌾\n\n" +
                       "Name: " + name + "\n" +
                       "Product: Rayalaseema Sona Masoori (25kg Bag)\n" +
@@ -212,11 +69,9 @@
                       "Please confirm order processing.";
 
             var encodedText = encodeURIComponent(txt);
+            var targetUrl = "https://whatsapp.com" + encodedText;
             
-            // Clean API bridge layout bypassing corporate workspace proxies
-            var url = "https://whatsapp.com" + encodedText;
-            
-            window.open(url, '_blank');
+            window.location.href = targetUrl;
         }
     </script>
 </body>
