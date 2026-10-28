@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiceDirect | Office Group Orders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <h1>🌾 RiceDirect</h1>
+            <p class="tagline">Premium Godavari Sona Masoori — Fresh Farm Wholesale</p>
+        </header>
+
+        <main class="product-card">
+            <div class="badge">Direct Farmer Sourced</div>
+            <h2>Premium Rice Bags (25kg)</h2>
+            <p class="desc">High-quality, long-grained aromatic Sona Masoori rice. Sourced at wholesale rates compared to the market, delivered clean and fresh.</p>
+
+            <form id="orderForm" onsubmit="sendWhatsAppOrder(event)">
+                <div class="form-group">
+                    <label>Select Rice Polish Preference:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="polish" value="Polished (Fine Grain)" checked>
+                            <span>✨ Polished Rice</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="polish" value="Unpolished (Raw/High Fiber)">
+                            <span>🌾 Unpolished Raw Rice</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity (Bags):</label>
+                    <select id="quantity" required>
+                        <option value="1">1 Bag (25 kg)</option>
+                        <option value="2">2 Bags (50 kg)</option>
+                        <option value="3">3 Bags (75 kg)</option>
+                        <option value="4">4 Bags (100 kg)</option>
+                    </select>
+                </div>
+
+                <hr class="divider">
+
+                <div class="form-group">
+                    <label for="name">Your Full Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Office Location / Desk Delivery Details:</label>
+                    <input type="text" id="location" placeholder="e.g., 4th Floor, Bay-B, Desk 412" required>
+                </div>
+
+                <button type="submit" class="cta-button">🚀 Place Order via WhatsApp</button>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function sendWhatsAppOrder(event) {
+            event.preventDefault();
+            
+            // Configuration Setup
+            const MY_WHATSAPP_NUMBER = "919876543210"; // Replace with your 10-digit WhatsApp number (add country code prefix, e.g., 91)
+            
+            // Gather Variables
+            const name = document.getElementById('name').value;
+            const polish = document.querySelector('input[name="polish"]:checked').value;
+            const quantity = document.getElementById('quantity').value;
+            const location = document.getElementById('location').value;
+
+            // Compile Formatted Message Matrix
+            const message = `🌾 *NEW RICE DIRECT ORDER* 🌾\n\n` +
+                            `👤 *Name:* ${name}\n` +
+                            `📦 *Product:* Godavari Sona Masoori (25kg Bag)\n` +
+                            `🍚 *Type:* ${polish}\n` +
+                            `🔢 *Quantity:* ${quantity} Bag(s)\n` +
+                            `📍 *Office Desk/Location:* ${location}\n\n` +
+                            `👉 _Please reply to confirm order processing and total price breakdown._`;
+
+            // Open secure messaging API redirect
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me{MY_WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
