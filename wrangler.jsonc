@@ -1,0 +1,8 @@
+{
+  "name": "ricedirect",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-29",
+  "workers_dev": true,
+  "assets": {"directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"]},
+  "d1_databases": [{"binding": "DB", "database_name": "ricedirect", "database_id": "320648c8-614b-448a-acd8-1e09b6d76009"}]
+}
