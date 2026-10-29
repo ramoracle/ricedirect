@@ -21,7 +21,7 @@
     </figure>
     <main class="product-card">
       <span class="badge">Direct Farmer Sourced</span>
-      <h2>Premium Rice Bags (25 kg)</h2>
+      <h2>Premium Rice Bags (10 kg &amp; 25 kg)</h2>
       <h3 class="brand-promise">Rooted in India. Shared with the World.</h3>
       <p class="description">Sona Masoori rice sourced directly from farmers, with clear pricing and personal service from RAM.</p>
       <p class="description">Choose your rice preference and quantity. Send your order enquiry through WhatsApp to receive a price and delivery quote before confirming your order.</p>
@@ -37,14 +37,19 @@
           <label class="radio-label"><input type="radio" name="polish" value="Polished (Fine Grain)" checked> ✨ Polished Rice</label>
           <label class="radio-label"><input type="radio" name="polish" value="Unpolished (Raw/High Fiber)"> 🌾 Unpolished Raw Rice</label>
         </fieldset>
+        <label for="bagSize">Bag Size</label>
+        <select id="bagSize" name="bagSize" required>
+          <option value="25">25 kg per bag</option>
+          <option value="10">10 kg per bag</option>
+        </select>
         <label for="quantity">Quantity (Bags)</label>
         <select id="quantity" name="quantity" required>
-          <option value="1">1 Bag (10 kg)</option>
-          <option value="1">1 Bag (25 kg)</option>
-          <option value="2">2 Bags (50 kg)</option>
-          <option value="3">3 Bags (75 kg)</option>
-          <option value="4">4 Bags (100 kg)</option>
+          <option value="1">1 Bag</option>
+          <option value="2">2 Bags</option>
+          <option value="3">3 Bags</option>
+          <option value="4">4 Bags</option>
         </select>
+        <p id="weightSummary" class="notice" role="status" aria-live="polite"></p>
         <hr>
         <label for="name">Your Full Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name" maxlength="100" required>
@@ -69,6 +74,15 @@
   <script>
     'use strict';
     const MY_WHATSAPP_NUMBER = '919160871927';
+    function updateWeightSummary() {
+      const size = Number(document.getElementById('bagSize').value);
+      const count = Number(document.getElementById('quantity').value);
+      document.getElementById('weightSummary').textContent = `Total weight: ${size * count} kg (${count} × ${size} kg bags)`;
+    }
+    for (const id of ['bagSize', 'quantity']) {
+      document.getElementById(id).addEventListener('change', updateWeightSummary);
+    }
+    updateWeightSummary();
     document.getElementById('orderForm').addEventListener('submit', function (event) {
       event.preventDefault();
       const nameField = document.getElementById('name');
@@ -81,6 +95,7 @@
       if (!this.reportValidity()) return;
       const polish = this.querySelector('input[name="polish"]:checked').value;
       const quantity = document.getElementById('quantity').value;
+      const bagSize = document.getElementById('bagSize').value;
       const destination = document.getElementById('destination').value;
       const message = [
         '🌾 *GRAINORA — NEW ORDER* 🌾',
@@ -88,9 +103,10 @@
         'Rooted in India. Shared with the World.', '',
         `👤 *Name:* ${nameField.value.trim()}`,
         `📱 *Customer WhatsApp:* ${whatsappNumber}`,
-        '📦 *Product:* GRAINORA Sona Masoori (25 kg Bag)',
+        `📦 *Product:* GRAINORA Sona Masoori (${bagSize} kg Bag)`,
         `🍚 *Type:* ${polish}`,
         `🔢 *Quantity:* ${quantity} Bag(s)`,
+        `⚖️ *Total Weight:* ${Number(bagSize) * Number(quantity)} kg`,
         `🌍 *Destination:* ${destination}`,
         `📍 *Delivery Location:* ${locationField.value.trim()}`, '',
         'Please reply to confirm availability, delivery and total price.'
